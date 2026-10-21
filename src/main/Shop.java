@@ -21,10 +21,8 @@ public class Shop {
 //	private Product[] inventory;
 	private ArrayList<Product> inventory;
 	private int numberProducts;
-//	private Sale[] sales;
 	private ArrayList<Sale> sales;
 	private int numberSales;
-	// connection using files
 	private Dao dao = new DaoImplFile();
 
 	final static double TAX_RATE = 1.04;

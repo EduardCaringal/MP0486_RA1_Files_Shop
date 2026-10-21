@@ -58,7 +58,6 @@ public class DaoImplJDBC implements Dao {
             	}
             }
         } catch (SQLException e) {
-			// in case error in SQL
 			e.printStackTrace();
 		}
     	return employee;
@@ -66,13 +65,11 @@ public class DaoImplJDBC implements Dao {
 
 	@Override
 	public ArrayList<Product> getInventory() {
-		// not implemented for JDBC
 		return new ArrayList<Product>();
 	}
 
 	@Override
 	public boolean writeInventory(ArrayList<Product> inventory) {
-		// not implemented for JDBC
 		return false;
 	}
 
