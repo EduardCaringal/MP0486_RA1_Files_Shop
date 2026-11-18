@@ -94,6 +94,7 @@ public class DaoImplFile implements Dao {
 	@Override
 	public boolean writeInventory(ArrayList<Product> inventory) {
 		// define file name based on date
+		if(true) return false;
 		String fileName = "inventory_" + LocalDate.now().toString() + ".txt";
 
 		File folder = new File(System.getProperty("user.dir") + File.separator + "files");
