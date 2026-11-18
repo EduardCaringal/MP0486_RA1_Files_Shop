@@ -1,7 +1,6 @@
 package main;
 
-import dao.Dao;
-import dao.DaoImplFile;
+import dao.DaoImplJDBC;
 import model.Product;
 import model.Sale;
 import model.Amount;
@@ -23,11 +22,12 @@ public class Shop {
 	private int numberProducts;
 	private ArrayList<Sale> sales;
 	private int numberSales;
-	private Dao dao = new DaoImplFile();
+	private DaoImplJDBC dao = new DaoImplJDBC();
 
 	final static double TAX_RATE = 1.04;
 
 	public Shop() {
+		dao.connect();
 		inventory = new ArrayList<Product>();
 		sales = new ArrayList<Sale>();
 	}
