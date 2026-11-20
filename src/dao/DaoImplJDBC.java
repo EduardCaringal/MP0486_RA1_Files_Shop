@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import model.Employee;
@@ -83,7 +84,22 @@ public class DaoImplJDBC implements Dao {
 
 	@Override
 	public boolean writeInventory(ArrayList<Product> inventory) {
-		return false;
+	    String sql = "INSERT INTO historical_inventory (id_product, name, wholesalerPrice, available, stock, created_at) VALUES (?,?,?,?,?,?)";
+	    Timestamp now = new Timestamp(System.currentTimeMillis());
+	    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+	        for (Product p : inventory) {
+	            if (p == null) continue;
+	            ps.setInt(1, p.getId());
+	            ps.setString(2, p.getName());
+	            ps.setDouble(3, p.getWholesalerPrice().getValue());
+	            ps.setBoolean(4, p.isAvailable());
+	            ps.setInt(5, p.getStock());
+	            ps.setTimestamp(6, now);
+	            ps.addBatch();
+	        }
+	        ps.executeBatch();
+	        return true;
+	    } catch (SQLException e) { e.printStackTrace(); return false; }
 	}
 
 }
